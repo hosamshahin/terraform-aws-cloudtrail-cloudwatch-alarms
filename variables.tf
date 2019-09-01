@@ -36,9 +36,14 @@ variable "create_dashboard" {
   default     = "true"
 }
 
-variable "metric_name" {}
+variable "metric_name" {
+  type = "list"
+}
 
-variable "filter_pattern" {}
+variable "filter_pattern" {
+  type = "list"
+}
 
-variable "alarm_description" {}
-
+variable "alarm_description" {
+  type = "list"
+}
