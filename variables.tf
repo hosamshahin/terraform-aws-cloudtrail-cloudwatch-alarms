@@ -35,3 +35,10 @@ variable "create_dashboard" {
   description = "When true a dashboard that displays tha statistics as a line graph will be created in CloudWatch"
   default     = "true"
 }
+
+variable "metric_name" {}
+
+variable "filter_pattern" {}
+
+variable "alarm_description" {}
+
