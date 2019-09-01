@@ -7,14 +7,14 @@ locals {
   endpoints     = "${distinct(compact(concat(list(local.sns_topic_arn), var.additional_endpoint_arns)))}"
   region        = "${var.region == "" ? data.aws_region.current.name : var.region}"
 
-  metric_name = ["${var.metric_name}"]
+  metric_name = "${var.metric_name}"
 
   metric_namespace = "${var.metric_namespace}"
   metric_value     = "1"
 
-  filter_pattern = ["${var.filter_pattern}"]
+  filter_pattern = "${var.filter_pattern}"
 
-  alarm_description = ["${var.alarm_description}"]
+  alarm_description = "${var.alarm_description}"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "default" {
