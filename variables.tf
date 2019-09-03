@@ -32,6 +32,11 @@ variable "metric_namespace" {
   default     = "CISBenchmark"
 }
 
+variable "alert_for" {
+  description = "Prefix"
+  default     = "CloudTrailBreach"
+}
+
 variable "create_dashboard" {
   description = "When true a dashboard that displays tha statistics as a line graph will be created in CloudWatch"
   default     = "false"

@@ -2,7 +2,7 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 locals {
-  alert_for     = "CloudTrailBreach"
+  alert_for     = "${var.alert_for}"
   sns_topic_arn = "${var.sns_topic_arn == "" ? aws_sns_topic.default.arn : var.sns_topic_arn }"
   endpoints     = "${distinct(compact(concat(list(local.sns_topic_arn), var.additional_endpoint_arns)))}"
   region        = "${var.region == "" ? data.aws_region.current.name : var.region}"
