@@ -28,8 +28,6 @@ resource "aws_cloudwatch_log_metric_filter" "default" {
     namespace = "${local.metric_namespace}"
     value     = "${local.metric_value}"
   }
-
-  tags = "${var.tags}"
 }
 
 resource "aws_cloudwatch_metric_alarm" "default" {
