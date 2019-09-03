@@ -24,6 +24,7 @@ variable "region" {
 
 variable "log_group_name" {
   description = "The cloudtrail cloudwatch log group name"
+  default     = ""
 }
 
 variable "metric_namespace" {
@@ -33,17 +34,25 @@ variable "metric_namespace" {
 
 variable "create_dashboard" {
   description = "When true a dashboard that displays tha statistics as a line graph will be created in CloudWatch"
-  default     = "true"
+  default     = "false"
 }
 
 variable "metric_name" {
-  type = "list"
+  type    = "list"
+  default = []
 }
 
 variable "filter_pattern" {
-  type = "list"
+  type    = "list"
+  default = []
 }
 
 variable "alarm_description" {
-  type = "list"
+  type    = "list"
+  default = []
+}
+
+variable "tags" {
+  description = "A map of tags to add to all resources"
+  default     = {}
 }

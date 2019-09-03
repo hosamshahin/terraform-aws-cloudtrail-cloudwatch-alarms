@@ -3,12 +3,7 @@ data "aws_caller_identity" "default" {}
 # Make a topic
 resource "aws_sns_topic" "default" {
   name_prefix = "${local.alert_for}-threshold-alerts"
-}
-
-resource "aws_sns_topic_policy" "default" {
-  count  = "${var.add_sns_policy != "true" && var.sns_topic_arn != "" ? 0 : 1}"
-  arn    = "${local.sns_topic_arn}"
-  policy = "${data.aws_iam_policy_document.sns_topic_policy.json}"
+  tags        = "${var.tags}"
 }
 
 data "aws_iam_policy_document" "sns_topic_policy" {
@@ -57,4 +52,10 @@ data "aws_iam_policy_document" "sns_topic_policy" {
       identifiers = ["events.amazonaws.com"]
     }
   }
+}
+
+resource "aws_sns_topic_policy" "default" {
+  count  = "${var.add_sns_policy != "true" && var.sns_topic_arn != "" ? 0 : 1}"
+  arn    = "${local.sns_topic_arn}"
+  policy = "${data.aws_iam_policy_document.sns_topic_policy.json}"
 }

@@ -28,6 +28,8 @@ resource "aws_cloudwatch_log_metric_filter" "default" {
     namespace = "${local.metric_namespace}"
     value     = "${local.metric_value}"
   }
+
+  tags = "${var.tags}"
 }
 
 resource "aws_cloudwatch_metric_alarm" "default" {
@@ -43,6 +45,7 @@ resource "aws_cloudwatch_metric_alarm" "default" {
   threshold           = "${local.metric_name[count.index] == "ConsoleSignInFailureCount" ? "3" :"1"}"
   alarm_description   = "${local.alarm_description[count.index]}"
   alarm_actions       = ["${local.endpoints}"]
+  tags                = "${var.tags}"
 }
 
 resource "aws_cloudwatch_dashboard" "main" {
@@ -71,6 +74,8 @@ resource "aws_cloudwatch_dashboard" "main" {
    ]
  }
  EOF
+
+  tags = "${var.tags}"
 }
 
 resource "aws_cloudwatch_dashboard" "main_individual" {
@@ -101,6 +106,8 @@ resource "aws_cloudwatch_dashboard" "main_individual" {
    ]
  }
  EOF
+
+  tags = "${var.tags}"
 }
 
 locals {
